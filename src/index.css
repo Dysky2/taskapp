@@ -60,3 +60,14 @@ code {
 .none {
   display: none;
 }
+
+@media screen and (max-width: 700px) {
+  .main {
+    width: 30%;
+    height: 99%;
+  }
+  .board {
+    width: 70%;
+    height: 99%;
+  }
+}

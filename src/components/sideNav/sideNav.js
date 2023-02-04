@@ -26,7 +26,7 @@ const SideNav = ({ stateOfOverlay, setStateOfOverlay, tasks, setTasks, columns, 
                     + Create New Board</button>
             </div>
             <div className="SideNav_bottom">
-                <div className="SideNav_theme-mode">
+                {/* <div className="SideNav_theme-mode">
                     <div className="night-icon">
                         <BsFillMoonFill />
                     </div>
@@ -38,7 +38,7 @@ const SideNav = ({ stateOfOverlay, setStateOfOverlay, tasks, setTasks, columns, 
                 <div className="SideNav_hideButton">
                     <BsFillEyeSlashFill />
                     <p className="SideNav_hideButton-title">Hide SideBar</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )
