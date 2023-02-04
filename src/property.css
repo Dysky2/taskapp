@@ -1,0 +1,13 @@
+:root {
+    --color-bg: #20212C;
+    --color-scroll: #3E3F4E;
+    --color-borderLine: #3E3F4E;
+    --color-main: #2B2C37;
+    --color-title: #ffffff;
+    --color-subTitle: #ffffff;
+    --color-board: #20212C;
+    --color-themeSwitchBox: #20212C;
+    --color-addButton: #ffffff;
+    --color-ellipsis: #20212C;
+    --color-checked: rgba(255, 255, 255, .5);
+}

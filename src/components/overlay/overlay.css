@@ -1,0 +1,68 @@
+.AddNewBoard {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  text-align: left;
+}
+
+.AddNewBoard__topWrapper {
+  margin-bottom: 1rem;
+}
+
+.AddNewBoard__boxWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.AddNewBoard__sub-title {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--color-subTitle);
+  margin-bottom: 0.5rem;
+}
+.AddNewBoard__label {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.AddNewBoard__label input {
+  width: 100%;
+}
+.AddNewBoard input, .AddNewBoard textArea {
+  background: transparent;
+  color: var(--color-title);
+  font-size: .8125rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 2px solid rgba(130,143,163,.4);
+  transition: border .2s ease;
+}
+
+.AddNewBoard__subtask-input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.AddNewBoard__subtaskUl {
+  display: flex;
+  width: 100%;
+  margin-left: -40px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.AddNewBoard__subtaskLi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AddNewBoard__subtask-delete {
+  margin-bottom: 10px;
+  cursor: pointer;
+}

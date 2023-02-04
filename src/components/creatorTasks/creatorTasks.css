@@ -1,0 +1,145 @@
+@import url(../../property.css);
+
+.AddNewTask {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: left;
+}
+
+.AddNewTask__topWrapper {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.125rem;
+}
+
+.AddNewTask__boxWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.AddNewTask__sub-title {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--color-subTitle);
+    margin-bottom: 0.5rem;
+}
+
+.AddNewTask__label {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.AddNewTask__label input {
+    width: 100%;
+}
+
+.AddNewTask input, .AddNewTask textArea {
+    background: transparent;
+    color: var(--color-title);
+    font-size: .8125rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 2px solid rgba(130,143,163,.4);
+    transition: border .2s ease;
+}
+
+.AddNewTask__description {
+    resize: none;
+}
+
+.AddNewTask__subtaskLi {
+    display: flex;
+    margin-top: 4px;
+}
+
+.AddNewTask__subtask-icon {
+    font-size: 1.3rem;
+    margin-top: 5px;
+}
+
+.AddNewTask__subtaskUl {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.AddNewTask__status {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.SelectDropDown {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    .SelectDropDown {
+        margin-bottom: 2rem;
+    }
+}
+
+.SelectDropDown__trigger-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+
+.SelectDropDown__trigger-icon {
+    font-size: 1.15rem;
+} 
+
+.SelectDropDown__wrapper {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: column;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    transform: translateY(3rem);
+    border-radius: 4px;
+    padding: 1rem;
+    background: var(--color-board);
+    animation: fadeIn .2s ease-in-out;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: 1px solid var(--color-bg);
+    box-shadow: 0 0 8px #364e7e1a;
+}
+
+.SelectDropDown__btn:not(:last-of-type) {
+    margin-bottom: 0.5rem;
+}
+
+.SelectDropDown__btn-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    color: #e1dcdc;
+    text-transform: capitalize;
+}
+
+.SelectDropDown__btn:hover {
+    transition: 0.4s ease;
+    transform: scale(1.2);
+}
+.none {
+    display: none;
+}

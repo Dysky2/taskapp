@@ -1,0 +1,123 @@
+@import url(../../property.css);
+
+.SideNav {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-main);
+    border-right: 1px solid var(--color-borderLine);
+    border-top: 1px solid var(--color-borderLine);
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.SideNav_top {
+    width: 100%;
+    height: 80%;
+}
+
+.SideNav_bottom {
+    width: 100%;
+    height: 20%;
+    background-color: var(--color-main);
+}
+
+.SideNav_head {
+    letter-spacing: 2.4px;
+    font-size: .85rem;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: white;
+}
+
+.SideNav_tab {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    padding-left: 2rem;
+    color: white;
+}
+
+.SideNav_tab--active {
+    background-color: #635FC7;
+    color: #ffffff;
+    border-radius: 0px 20px 20px 0px;
+}
+.icon {
+    margin-right: 0.7rem;
+}
+
+.SideNav_new_board {
+    display: flex;
+    align-items: center;
+    font-size: 1.05rem;
+    padding-left: 2rem;
+    background-color: var(--color-main);
+    border: 1px solid var(--color-main);
+    color: #635FC7;
+    margin-top: 10px;
+}
+.SideNav_new_board:hover {
+    opacity: .6s;
+    cursor: pointer;
+}
+
+
+.SideNav_theme-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-themeSwitchBox);
+    width: 80%;
+    height: 48px;
+    margin-left: 1.5rem;
+    border-radius: 6px;
+}
+
+.SideNav_theme-toggle {
+    display: flex;
+    margin: 0 26px;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    background: #635FC7;
+    border-radius: 12px;
+    position: relative;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background-color: var(--color-main);
+    border-radius: 10px;
+}
+
+.SideNav_theme-toggle--ball {
+    position: absolute;
+    transition: left .2s ease;
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 25px;
+    left: 10%;
+}
+
+.SideNav_hideButton {
+    font-size: .9375rem;
+    color: #828fa3;
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    transition: opacity .1s ease-out;
+    cursor: pointer;
+}
+
+.SideNav_hideButton-title {
+    margin-left: 1.2rem;
+}
+
+.tab_view {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+}
