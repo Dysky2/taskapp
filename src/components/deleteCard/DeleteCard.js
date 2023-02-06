@@ -26,7 +26,7 @@ const DeleteCard = ({ updateCard,tasks, setTasks,showDeleteCard,setShowDeleteCar
             <div className="DeleteBoard">
                 <div className="DeleteBoard__topWrapper">
                     <h2 className="DeleteBoard__text-title">Delete this Card?</h2>
-                    <p className="DeleteBoard__text-info">Are you sure you want to delete the {} Card? This action will remove all columns and tasks and cannot be reversed.</p>
+                    <p className="DeleteBoard__text-info">Are you sure you want to delete the {updateCard.title} Card?</p>
                 </div>
                 <div className="DeleteBoard__btnWrapper">
                     <button type="button" className="Button  Button--small  DeleteBoard__btn--delete Button--custom " onClick={deleteBoard}>Delete</button>
