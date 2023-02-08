@@ -71,24 +71,20 @@ export default function App() {
           setTasks = {setTasks}
           stateOfOverlay = {stateOfOverlay}
           setStateOfOverlay = {setStateOfOverlay}
-          columns = {columns}
           setColumns = {setColumns}
         />
       </div>
       <div className='board'>
         <Board 
           tasks = {tasks}
-          columns = {columns}
-          setColumns = {setColumns}
+          setTasks = {setTasks}
           stateOfColumnsOverlay = {stateOfColumnsOverlay}
           setStateOfColumnsOverlay = {setStateOfColumnsOverlay}
           setUpdateTask = {setUpdateTask}
-          cards = {cards}
-          setUpdateCard = {setUpdateCard}
-          showColumnDelete = {showColumnDelete}
           setShowColumnDelete = {setShowColumnDelete}
-          setShowCardOv = {setShowCardOv}
           showCardOv = {showCardOv}
+          setShowCardOv = {setShowCardOv}
+          setUpdateCard = {setUpdateCard}
         />
       </div>
       <div className={`Overlay ${stateOfOverlay ? '': 'none'}`}>
@@ -99,7 +95,6 @@ export default function App() {
           setTasks = {setTasks}
           stateOfOverlay = {stateOfOverlay}
           setStateOfOverlay = {setStateOfOverlay}
-          inputColumn = {inputColumn}
           setInputColum = {setInputColumn}
           columns = {columns}
           setColumns = {setColumns}
@@ -109,17 +104,12 @@ export default function App() {
         <ColumnOverlay 
           tasks = {tasks}
           setTasks = {setTasks}
-          columns = {columns}
-          setColumns = {setColumns}
-          inputColumn = {inputColumn}
           setInputColum = {setInputColumn}
           stateOfColumnsOverlay = {stateOfColumnsOverlay}
           setStateOfColumnsOverlay = {setStateOfColumnsOverlay}
           updateTask = {updateTask}
           showColumnDelete = {showColumnDelete}
           setShowColumnDelete = {setShowColumnDelete}
-          cards = {cards}
-          setCards = {setCards}
         />
       </div>
       <div className={`Overlay ${stateAddTask ? '' : 'none'}`}>

@@ -3,26 +3,24 @@ import {v4 as uuidv4} from 'uuid';
 import { useState } from 'react';
 import { BsX } from "react-icons/bs";
 
-const Overlay = ({ inputTask, setInputTask, tasks, setTasks, stateOfOverlay, setStateOfOverlay, inputColumn,setInputColum,columns, setColumns }) => {
+const Overlay = ({ inputTask, setInputTask, tasks, setTasks, stateOfOverlay, setStateOfOverlay,setInputColum,columns, setColumns }) => {
 
     const [showColumnDelete, setShowColumnDelete] = useState(false);
+    const [com, setCom] = useState('');
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        setCom('');
 
-        // setTasks([...tasks, {id: uuidv4(), title: inputTask, selected: false,
-        //     columns: columns.map(function(item, index) {
-        //         if(item.id === (Object.keys(inputColumn))[index]) {
-        //             return {...item, title: (Object.values(inputColumn))[index]}
-        //         } 
-        //         return item;
-        //     })}]);
-
-        setTasks([...tasks, {id: uuidv4(), title: inputTask, selected: false, columns: columns}]);
-
-        setInputTask("");
-        setInputColum('');
-        setStateOfOverlay(!stateOfOverlay);
+        if( ([...new Set(columns.map(column => {return column.title}))]).length !== (columns.map(column => {return column.title})).length )  {
+            setCom("Columns names are the same");
+        } else {
+            setTasks([...tasks, {id: uuidv4(), title: inputTask, selected: false, columns: columns}]);
+    
+            setInputTask("");
+            setInputColum('');
+            setStateOfOverlay(!stateOfOverlay);
+        }
     }
 
     const onInputChange = (event) => {
@@ -39,11 +37,7 @@ const Overlay = ({ inputTask, setInputTask, tasks, setTasks, stateOfOverlay, set
 
     const onColumnChange = (event) => {
         const {name, value} = event.target;
-
-        // setInputColum( (prev) => ({
-        //     ...prev,
-        //     [name]: value
-        // }))
+        setCom('');
 
         setColumns(columns.map(column => {
             if(column.id === name) {
@@ -87,6 +81,7 @@ const Overlay = ({ inputTask, setInputTask, tasks, setTasks, stateOfOverlay, set
                 </div>
                 <div className="AddNewBoard__boxWrapper">
                     <p className="AddNewBoard__sub-title">Columns</p>
+                    <p className='comunication'>{com}</p>  
                     <ul className="AddNewBoard__subtaskUl" id="List_ul">
                         {columns.map(column => 
                             <li key={column.id} className="AddNewBoard__subtaskLi">

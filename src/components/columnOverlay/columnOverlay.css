@@ -77,3 +77,13 @@
   color: white;
   font-size: 1.03rem;
 }
+
+.comunication {
+  margin: 0px;
+  padding: 0px;
+  color: red;
+  position: absolute;
+  left: 140px;
+  top: 215px;
+  font-size: 0.875rem;
+}

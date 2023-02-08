@@ -1,6 +1,5 @@
 @import url(property.css);
 
-
 * {
   box-sizing: border-box;
 }
@@ -41,9 +40,35 @@ code {
 }
 
 .board {
+  position: relative;
+  display: flex;
+  transition: left .2s ease;
   width: 85%;
   height: 90%;
   overflow: auto;
+  background: var(--color-bg);
+}
+
+.board::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.7rem;
+}
+
+.board::-webkit-scrollbar-corner {
+  background: var(--color-bg);
+}
+
+.board::-webkit-scrollbar-thumb {
+  background: var(--color-scroll);
+  border-radius: 10px;
+}
+
+.board::-webkit-scrollbar-thumb:hover {
+  background-color: #635FC7;
+}
+.board::-webkit-scrollbar-track {
+  background: rgba(0,0,0,.3);
+  border-radius: 10px;
 }
 
 .Overlay, .cardOverlay, .column_Overlay {

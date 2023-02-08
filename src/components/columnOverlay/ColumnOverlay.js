@@ -1,51 +1,54 @@
 import './columnOverlay.css';
 import {v4 as uuidv4} from 'uuid';
 import { BsX } from "react-icons/bs";
+import { useState } from 'react';
 
-const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, inputColumn,setInputColum,
-    stateOfColumnsOverlay,setStateOfColumnsOverlay, updateTask, showColumnDelete, setShowColumnDelete
+const ColumnOverlay = ( {tasks, setTasks,setInputColum,stateOfColumnsOverlay,
+    setStateOfColumnsOverlay, updateTask, showColumnDelete, setShowColumnDelete
 } ) => {
+    const [com, setCom] = useState('')
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        setCom('');
 
-        // setTasks(
-        //     tasks.map( (task) => {
-        //         if(task.id === updateTask.id) {
-        //             return {...task, columns: columns}
-        //         }
-        //         return task;
-        //     })
-        // )
-
-        setTasks(
-            tasks.map((task) => {
-                if(task.id === updateTask.id) {
-                    return {...task, columns: task.columns.map((column,indexCol) => {
-                        if(updateTask.columns[indexCol] !== undefined) {
-                            return( {...column, title: column.title, 
-                                cards: task.columns[indexCol].cards.map(card => {
-                                    if(card.activeStatus !== column.title) {
-                                        return {...card, activeStatus: column.title,}
+        tasks.map(task => {
+            if(task.selected && task.columns.length >= 1) {
+                if( ([...new Set(task.columns.map(column => {return column.title}))]).length !== (task.columns.map(column => {return column.title})).length )  {
+                    setCom("Columns names are the same");
+                } else  {
+                    setTasks(
+                        tasks.map((task) => {
+                            if(task.id === updateTask.id) {
+                                return {...task, columns: task.columns.map((column,indexCol) => {
+                                    if(updateTask.columns[indexCol] !== undefined) {
+                                        return( {...column, title: column.title, 
+                                            cards: task.columns[indexCol].cards.map(card => {
+                                                if(card.activeStatus !== column.title) {
+                                                    return {...card, activeStatus: column.title,}
+                                                }
+                                                return card;
+                                            }
+                                        )})
+                                    } else {
+                                        return column;
                                     }
-                                    return card;
-                                }
-                            )})
-                        } else {
-                            return column;
-                        }
-                    })}
+                                })}
+                            }
+                            return task;
+                        })
+                    )
+                    setInputColum('');
+            
+                    setStateOfColumnsOverlay(!stateOfColumnsOverlay);
                 }
-                return task;
-            })
-        )
-
-        setInputColum('');
-        setStateOfColumnsOverlay(!stateOfColumnsOverlay);
+            } else {
+                return null;
+            }
+        })
     }
 
     const createColumn = () => {
-
         setTasks(
             tasks.map(task => {
                 if(task.columns.length >= 1) {
@@ -57,24 +60,10 @@ const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, i
                 return task;
             })
         )
-
-        // setColumns([...columns, {id: uuidv4(), title: '', cards: []}]);
     }
 
     const onColumnChange = (column,event) => {
-
-        // setInputColum( (prev) => ({
-        //     ...prev,
-        //     [name]: value
-        // }))
-
-        // setColumns(columns.map(column => {
-        //     if(column.id === name) {
-        //         return {...column, title: value}
-        //     }
-        //     return column;
-        // }))
-
+        setCom('');
         setTasks(
             tasks.map(task => {
                 if(task.selected) {
@@ -93,8 +82,6 @@ const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, i
     }
 
     const deleteColumn = (column) => {
-        // setColumns(columns.filter(item => item.id !== column.id));
-
         setTasks(
             tasks.map(task => {
                 if(task.selected) {
@@ -109,7 +96,40 @@ const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, i
     }
 
     const closeModal = () => {
-        // setStateOfColumnsOverlay(!stateOfColumnsOverlay);
+        setCom('');
+        tasks.map(task => {
+            if(task.selected && task.columns.length >= 1) {
+                if( ([...new Set(task.columns.map(column => {return column.title}))]).length !== (task.columns.map(column => {return column.title})).length )  {
+                    setCom("Columns names are the same");
+                } else  {
+                    setTasks(
+                        tasks.map((task) => {
+                            if(task.id === updateTask.id) {
+                                return {...task, columns: task.columns.map((column,indexCol) => {
+                                    if(updateTask.columns[indexCol] !== undefined) {
+                                        return( {...column, title: column.title, 
+                                            cards: task.columns[indexCol].cards.map(card => {
+                                                if(card.activeStatus !== column.title) {
+                                                    return {...card, activeStatus: column.title,}
+                                                }
+                                                return card;
+                                            }
+                                        )})
+                                    } else {
+                                        return column;
+                                    }
+                                })}
+                            }
+                            return task;
+                        })
+                    )
+                    setInputColum('');
+                    setStateOfColumnsOverlay(!stateOfColumnsOverlay);
+                }
+            } else {
+                return null;
+            }
+        })
     }
 
     return (
@@ -132,6 +152,7 @@ const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, i
                 </div>
                 <div className="AddNewBoard__boxWrapper">
                     <p className="AddNewBoard__sub-title">Columns</p>
+                    <p className='comunication'>{com}</p>           
                     <ul className="AddNewBoard__subtaskUl" id="List_ul">
                         {tasks.map(task => {
                             if(task.selected) {
@@ -155,7 +176,6 @@ const ColumnOverlay = ( {tasks, setTasks, columns, cards,setCards, setColumns, i
                             }
                             return null;
                         })}
-
                     </ul>
                     <button  onClick={createColumn}  type="button" className="Button Button--small Button--theme">+ Add New Column</button>
                 </div>

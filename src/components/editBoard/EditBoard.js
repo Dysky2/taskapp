@@ -6,9 +6,30 @@ import {v4 as uuidv4} from 'uuid';
 const EditBoard = ({editedTask, setEditedTask, showEditBoard, setShowEditBoard, tasks, setTasks, columnsToUpdate,setColumnsToUpdate}) => {
 
     const [input, setInput] = useState('');
+    const [com, setCom] = useState('');
+    const [defaultValue, setDefaultValue] = useState('')
 
     const closeModal = () => {
-        setShowEditBoard(!showEditBoard);
+        tasks.map(task => {
+            if(task.selected && task.columns.length >= 1) {
+                if( ([...new Set(task.columns.map(column => {return column.title}))]).length !== (task.columns.map(column => {return column.title})).length )  {
+                    setCom("Columns names are the same");
+                } else  {
+                    setTasks(tasks.map(task => {
+                        if(task.selected) {
+                            return {...task, title: input === "" ? editedTask.title : input}
+                        }
+
+                        return task;
+                    }))
+            
+                    setShowEditBoard(!showEditBoard);
+                }
+            } else {
+                return null;
+            }
+        })
+        setInput('');
     }
 
     const onInputChange = (event) => {
@@ -27,6 +48,7 @@ const EditBoard = ({editedTask, setEditedTask, showEditBoard, setShowEditBoard, 
     }
 
     const onColumnChange = (column,event) => {
+        setCom('');
         setTasks(
             tasks.map(task => {
                 if(task.selected) {
@@ -57,15 +79,25 @@ const EditBoard = ({editedTask, setEditedTask, showEditBoard, setShowEditBoard, 
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-
-        setTasks(tasks.map(task => {
-            if(task.selected) {
-                return {...task, title: input === "" ? editedTask.title : input}
+        tasks.map(task => {
+            if(task.selected && task.columns.length >= 1) {
+                if( ([...new Set(task.columns.map(column => {return column.title}))]).length !== (task.columns.map(column => {return column.title})).length )  {
+                    setCom("Columns names are the same");
+                } else  {
+                    setTasks(tasks.map(task => {
+                        if(task.selected) {
+                            return {...task, title: input === "" ? editedTask.title : input}
+                        }
+                        
+                        return task;
+                    }))
+                    setInput('')
+                    setShowEditBoard(!showEditBoard);
+                }
+            } else {
+                return null;
             }
-            return task;
-        }))
-
-        setShowEditBoard(!showEditBoard);
+        })
     }
 
     return (
@@ -78,16 +110,24 @@ const EditBoard = ({editedTask, setEditedTask, showEditBoard, setShowEditBoard, 
                 <div className="AddNewBoard__boxWrapper">
                     <p className="AddNewBoard__sub-title">Name</p>
                     <label className="AddNewBoard__label">
-                        <input 
-                            type='text' 
-                            defaultValue={editedTask.title}
-                            required
-                            onChange={onInputChange}
-                        />
+                        {tasks.map(task => {
+                            if(task.selected) {
+                                return(
+                                    <input 
+                                        key={task.id}
+                                        type='text' 
+                                        required
+                                        onChange={onInputChange}
+                                        defaultValue = {task.title}
+                                    />
+                                )
+                            }
+                        })}
                     </label>
                 </div>
                 <div className="AddNewBoard__boxWrapper">
                     <p className="AddNewBoard__sub-title">Columns</p>
+                    <p className='comunication'>{com}</p>   
                     <ul className="AddNewBoard__subtaskUl" id="List_ul">
 
                         {tasks.map(task => {

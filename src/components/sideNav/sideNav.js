@@ -2,7 +2,7 @@ import './sideNav.css';
 import { BsFillMoonFill, BsFillSunFill, BsFillEyeSlashFill, BsBox } from "react-icons/bs";
 import TaskList from '../taskList/TaskList';
 
-const SideNav = ({ stateOfOverlay, setStateOfOverlay, tasks, setTasks, columns, setColumns  }) => {
+const SideNav = ({ stateOfOverlay, setStateOfOverlay, tasks, setTasks, setColumns  }) => {
 
     const changeStateOv = () => {
         setStateOfOverlay(!stateOfOverlay);

@@ -62,11 +62,15 @@ const CardOverlay = ({ updateCard, setUpdateCard,setShowCardOv,showCardOv,setTas
             tasks.map(task => {
                 if(task.selected) {
                     return {...task, columns: task.columns.map(itemCol => {
-                        if(itemCol.title === column.title) {
-                            return {...itemCol, cards: [...itemCol.cards, {...updateCard, activeStatus: column.title}] }
-                        } else {
-                            return {...itemCol, cards: itemCol.cards.filter(item => item.id !== updateCard.id)
+                        if(column.title !== updateCard.activeStatus) {
+                            if(itemCol.title === column.title) {
+                                return {...itemCol, cards: [...itemCol.cards, {...updateCard, activeStatus: column.title}] }
+                            } else {
+                                return {...itemCol, cards: itemCol.cards.filter(item => item.id !== updateCard.id)
+                                }
                             }
+                        } else {
+                            return itemCol;
                         }
                     })}
                 }
@@ -96,6 +100,7 @@ const CardOverlay = ({ updateCard, setUpdateCard,setShowCardOv,showCardOv,setTas
         //     })
         // )
         setIsWrappShowed(false);
+        setIsArrowDown(true);
     }
 
     const triggerDropDown = (event) => {
@@ -104,18 +109,6 @@ const CardOverlay = ({ updateCard, setUpdateCard,setShowCardOv,showCardOv,setTas
         setIsArrowDown(!isArrowDown);
         setIsWrappShowed(!isWrappShowed)
     }
-
-    // console.log(
-    //     updateCard === "" ? "" : updateCard.subTasks.map((subTask,index) => {
-    //         return subTask.selected;
-    //     }).map(elem => {
-    //         if(elem) {
-    //             return numbersOfChecked;
-    //         } else {
-    //             return elem;
-    //         }
-    //     })
-    // );
 
     const showCardEdit = () => {
         setIsShowCardEdit(!isShowCardEdit);

@@ -109,13 +109,17 @@ const EditCard = ({tasks, setTasks, showEditCard, setShowEditCard,updateCard,set
                 <div className='AddNewTask__boxWrapper'>
                     <p className="AddNewTask__sub-title">Title</p>
                     <label className="AddNewTask__label undefined">
-                        <input 
-                            required
-                            defaultValue={updateCard.title}
-                            type="text" 
-                            name="title"
-                            onChange={onChangeInput}
-                        />
+                        {updateCard === "" ? '' : [updateCard].map(elem => 
+                            <input 
+                                key={updateCard.id}
+                                required
+                                defaultValue={elem.title}
+                                type="text" 
+                                name="title"
+                                onChange={onChangeInput}
+                            /> 
+                        )}
+
                     </label>
                 </div>
 
@@ -166,7 +170,7 @@ const EditCard = ({tasks, setTasks, showEditCard, setShowEditCard,updateCard,set
                                     if(task.selected) {
                                         return (task.columns.map(column =>  {
                                             return (
-                                                <button key={column.id} type="button" className="SelectDropDown__btn" onClick={() => changeStatus(column)}  title={column.title}>
+                                                <button key={column.id} type="button" className="SelectDropDown__btn" onClick={() => changeStatus(column)} title={column.title}>
                                                     <span className="SelectDropDown__btn-text">{column.title}</span>
                                                 </button>
                                             )
